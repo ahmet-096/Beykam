@@ -1,5 +1,5 @@
 using Beykam.Application;
-using Beykam.Persistence;
+using Beykam.Application.Common.Mapping;
 using Beykam.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -10,6 +10,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddApplication(); 
 builder.Services.AddDbContext<BeykamDbContext>(options =>
     options.UseNpgsql("Host=localhost;Database=BeykamDb;Username=postgres;Password=skrmricv"));
+
+
+builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 
 builder.Services.AddControllers();

@@ -1,8 +1,11 @@
-using Beykam.Domain.Entities;
+using Beykam.Application.Candidates.DTOs;
 using MediatR;
 
-namespace Beykam.Application.Candidates.Queries;
-
-public record GetAllCandidatesQuery() : IRequest<IEnumerable<Candidate>>;
+namespace Beykam.Application.Candidates.Queries
+{
+    public class GetAllCandidatesQuery : IRequest<IEnumerable<CandidateResponseDto>>
+    {
+    }
+}
 
 

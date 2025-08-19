@@ -1,8 +1,12 @@
-using Beykam.Domain.Entities;
+using Beykam.Application.Candidates.DTOs;
 using MediatR;
 
-namespace Beykam.Application.Candidates.Queries;
-
-public record GetCandidateByIdQuery(Guid Id) : IRequest<Candidate?>;
+namespace Beykam.Application.Candidates.Queries
+{
+    public class GetCandidateByIdQuery : IRequest<CandidateResponseDto?>
+    {
+        public Guid Id { get; set; }
+    }
+}
 
 

@@ -5,6 +5,7 @@ namespace Beykam.Domain.Entities
         public Guid Id { get; set; }
         public required string SchoolName { get; set; }
         public required string Department { get; set; }
+        public required string Degree { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime? EndDate { get; set; } // Devam ediyorsa null
         public Guid CandidateId { get; set; }
