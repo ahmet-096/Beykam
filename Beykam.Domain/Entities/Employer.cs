@@ -13,7 +13,7 @@ public class Employer
     public string? LogoUrl { get; set; }
     public string? Phone { get; set; }
     public EmployerStatus Status { get; set; } = EmployerStatus.Pending;
-    public Guid? ApprovedBy { get; set; }
+    public bool IsApproved { get; set; } = false;
     public DateTime? ApprovedAt { get; set; }
     public string? RejectionReason { get; set; }
     public ICollection<JobPost> JobPosts { get; set; } = new List<JobPost>();

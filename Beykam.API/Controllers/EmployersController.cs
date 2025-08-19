@@ -78,14 +78,18 @@ namespace Beykam.API.Controllers
                 }
             }
 
-            await _mediator.Send(new UpdateEmployerCommand { Id = id, Employer = new Beykam.Application.Employers.DTOs.UpdateEmployerDto
+            await _mediator.Send(new UpdateEmployerCommand
             {
-                CompanyName = dto.CompanyName,
-                CompanyDescription = dto.CompanyDescription,
-                Website = dto.Website,
-                LogoUrl = dto.LogoUrl,
-                Phone = dto.Phone
-            } }, cancellationToken);
+                Id = id,
+                Employer = new Beykam.Application.Employers.DTOs.UpdateEmployerDto
+                {
+                    CompanyName = dto.CompanyName,
+                    CompanyDescription = dto.CompanyDescription,
+                    Website = dto.Website,
+                    LogoUrl = dto.LogoUrl,
+                    Phone = dto.Phone
+                }
+            }, cancellationToken);
             return NoContent();
         }
 
@@ -94,6 +98,14 @@ namespace Beykam.API.Controllers
         public async Task<IActionResult> Delete([FromRoute] Guid id, CancellationToken cancellationToken)
         {
             await _mediator.Send(new DeleteEmployerCommand { Id = id }, cancellationToken);
+            return NoContent();
+        }
+        
+        [HttpPost("{id}/approve")]
+        public async Task<IActionResult> Approve(Guid id)
+        {
+            var command = new ApproveEmployerCommand { Id = id };
+            await _mediator.Send(command);
             return NoContent();
         }
     }
