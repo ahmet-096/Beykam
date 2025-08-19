@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Beykam.Application.JobPosts.Queries
 {
-    public class GetAllJobPostsQueryHandler :  IRequestHandler<GetAllJobPostsQuery, List<JobPostResponseDTO>>
+    public class GetAllJobPostsQueryHandler :  IRequestHandler<GetAllJobPostsQuery, List<JobPostDTO>>
     {
         private readonly BeykamDbContext _dbContext;
         private readonly IMapper _mapper;
@@ -17,14 +17,14 @@ namespace Beykam.Application.JobPosts.Queries
             _mapper = mapper;
         }
 
-        public async Task<List<JobPostResponseDTO>> Handle(GetAllJobPostsQuery request, CancellationToken cancellationToken)
+        public async Task<List<JobPostDTO>> Handle(GetAllJobPostsQuery request, CancellationToken cancellationToken)
         {
             var jobPosts = await _dbContext.Jobs
                 .Include(j => j.Employer)
                 .Where(j => j.IsActive && j.IsApproved)
                 .ToListAsync(cancellationToken);
 
-            return _mapper.Map<List<JobPostResponseDTO>>(jobPosts);
+            return _mapper.Map<List<JobPostDTO>>(jobPosts);
         }
 
     }

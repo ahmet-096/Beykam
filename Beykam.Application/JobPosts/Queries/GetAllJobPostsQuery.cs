@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Beykam.Application.JobPosts.Queries
 {
-    public class GetAllJobPostsQuery() : IRequest<List<JobPostResponseDTO>>
+    public class GetAllJobPostsQuery() : IRequest<List<JobPostDTO>>
     {
         
     }

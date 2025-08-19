@@ -17,16 +17,18 @@ namespace Beykam.Application.Common.Mapping
             CreateMap<CandidateEducationDto, CandidateEducation>();
 
             CreateMap<Candidate, CandidateResponseDto>();
-            CreateMap<CandidateSkill, CandidateSkillDto>();        
-            CreateMap<CandidateLanguage, CandidateLanguageDto>();  
-            CreateMap<CandidateExperience, CandidateExperienceDto>(); 
-            CreateMap<CandidateEducation, CandidateEducationDto>(); 
+            CreateMap<CandidateSkill, CandidateSkillDto>();
+            CreateMap<CandidateLanguage, CandidateLanguageDto>();
+            CreateMap<CandidateExperience, CandidateExperienceDto>();
+            CreateMap<CandidateEducation, CandidateEducationDto>();
 
             CreateMap<UpdateEmployerDto, Employer>();
             CreateMap<Employer, UpdateEmployerDto>();
 
-            CreateMap<JobPost, JobPostResponseDTO>()
+            CreateMap<JobPost, JobPostDTO>()
                 .ForMember(dest => dest.EmployerName, opt => opt.MapFrom(src => src.Employer.CompanyName));
+            CreateMap<JobPostDTO, JobPost>()
+                .ForMember(dest => dest.Employer.CompanyName, opt => opt.MapFrom(src => src.EmployerName));
         }
     }
 }

@@ -1,7 +1,9 @@
 using MediatR;
 
-namespace Beykam.Application.JobPosts.Commands;
-
-public record DeleteJobPostCommand(Guid Id) : IRequest<Unit>;
-
-
+namespace Beykam.Application.JobPosts.Commands
+{
+    public class DeleteJobPostCommand : IRequest<Unit>
+    {
+        public Guid Id { get; set; }
+    }
+}

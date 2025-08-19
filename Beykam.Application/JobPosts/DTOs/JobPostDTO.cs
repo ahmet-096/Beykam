@@ -2,7 +2,7 @@ using Beykam.Domain.Enums;
 
 namespace Beykam.Application.JobPosts.DTOs
 {
-    public class JobPostResponseDTO
+    public class JobPostDTO
     {
         public Guid Id { get; set; }
         public string Title { get; set; } = default!;
