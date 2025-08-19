@@ -1,8 +1,12 @@
-using Beykam.Domain.Entities;
+using Beykam.Application.JobPosts.DTOs;
 using MediatR;
+using System.Collections.Generic;
 
-namespace Beykam.Application.JobPosts.Queries;
+namespace Beykam.Application.JobPosts.Queries
+{
+    public class GetAllJobPostsQuery() : IRequest<List<JobPostResponseDTO>>
+    {
+        
+    }
 
-public record GetAllJobPostsQuery() : IRequest<IEnumerable<JobPost>>;
-
-
+}

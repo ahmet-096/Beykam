@@ -1,0 +1,16 @@
+using Beykam.Domain.Enums;
+
+namespace Beykam.Application.JobPosts.DTOs
+{
+    public class JobPostResponseDTO
+    {
+        public Guid Id { get; set; }
+        public string Title { get; set; } = default!;
+        public string Location { get; set; } = default!;
+        public JobType JobType { get; set; }
+        public string EmployerName { get; set; } = default!;
+        public DateTime CreatedAt { get; set; }
+        public int ViewCount { get; set; }
+        public int ApplicationCount { get; set; }
+    }
+}

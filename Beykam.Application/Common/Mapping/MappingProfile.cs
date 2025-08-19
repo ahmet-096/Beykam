@@ -1,5 +1,7 @@
 using AutoMapper;
 using Beykam.Application.Candidates.DTOs;
+using Beykam.Application.Employers.DTOs;
+using Beykam.Application.JobPosts.DTOs;
 using Beykam.Domain.Entities;
 
 namespace Beykam.Application.Common.Mapping
@@ -8,7 +10,6 @@ namespace Beykam.Application.Common.Mapping
     {
         public MappingProfile()
         {
-            // Candidate mappings
             CreateMap<UpdateCandidateDto, Candidate>();
             CreateMap<CandidateSkillDto, CandidateSkill>();
             CreateMap<CandidateLanguageDto, CandidateLanguage>();
@@ -21,7 +22,11 @@ namespace Beykam.Application.Common.Mapping
             CreateMap<CandidateExperience, CandidateExperienceDto>(); 
             CreateMap<CandidateEducation, CandidateEducationDto>(); 
 
-            // Employer mappings handled explicitly in command handler for partial updates
+            CreateMap<UpdateEmployerDto, Employer>();
+            CreateMap<Employer, UpdateEmployerDto>();
+
+            CreateMap<JobPost, JobPostResponseDTO>()
+                .ForMember(dest => dest.EmployerName, opt => opt.MapFrom(src => src.Employer.CompanyName));
         }
     }
 }

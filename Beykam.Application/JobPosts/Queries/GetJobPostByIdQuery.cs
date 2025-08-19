@@ -1,8 +1,10 @@
-using Beykam.Domain.Entities;
+using Beykam.Application.JobPosts.DTOs;
 using MediatR;
 
-namespace Beykam.Application.JobPosts.Queries;
-
-public record GetJobPostByIdQuery(Guid Id) : IRequest<JobPost?>;
-
-
+namespace Beykam.Application.JobPosts.Queries
+{
+    public class GetJobPostByIdQuery : IRequest<JobPostResponseDTO?>
+    {
+        public Guid Id { get; set; }
+    }
+}
