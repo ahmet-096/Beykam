@@ -8,7 +8,8 @@ namespace Beykam.Application.Common.Mapping
     {
         public MappingProfile()
         {
-            CreateMap<CreateCandidateDto, Candidate>();
+            // Candidate mappings
+            CreateMap<UpdateCandidateDto, Candidate>();
             CreateMap<CandidateSkillDto, CandidateSkill>();
             CreateMap<CandidateLanguageDto, CandidateLanguage>();
             CreateMap<CandidateExperienceDto, CandidateExperience>();
@@ -19,6 +20,8 @@ namespace Beykam.Application.Common.Mapping
             CreateMap<CandidateLanguage, CandidateLanguageDto>();  
             CreateMap<CandidateExperience, CandidateExperienceDto>(); 
             CreateMap<CandidateEducation, CandidateEducationDto>(); 
+
+            // Employer mappings handled explicitly in command handler for partial updates
         }
     }
 }

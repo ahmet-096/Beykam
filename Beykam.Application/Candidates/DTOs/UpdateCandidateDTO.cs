@@ -1,11 +1,11 @@
 namespace Beykam.Application.Candidates.DTOs
 {
-    public class CreateCandidateDto
+    public class UpdateCandidateDto
     {
-        public string FirstName { get; set; } = default!;
-        public string LastName { get; set; } = default!;
-        public string Email { get; set; } = default!;
-        public string PhoneNumber { get; set; } = default!;
+        public string? FirstName { get; set; } = default!;
+        public string? LastName { get; set; } = default!;
+        public string? Email { get; set; } = default!;
+        public string? PhoneNumber { get; set; } = default!;
         public string? CvUrl { get; set; }
         public List<CandidateSkillDto>? Skills { get; set; } = new();
         public List<CandidateLanguageDto>? Languages { get; set; } = new();

@@ -6,7 +6,7 @@ namespace Beykam.Application.Candidates.Commands
     public class UpdateCandidateCommand : IRequest<Unit>
     {
         public Guid Id { get; set; }
-        public CreateCandidateDto Candidate { get; set; } = default!;
+        public UpdateCandidateDto Candidate { get; set; } = default!;
     }
 }
 

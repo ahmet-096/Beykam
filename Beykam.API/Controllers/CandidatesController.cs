@@ -59,7 +59,7 @@ namespace Beykam.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] CreateCandidateDto dto, CancellationToken cancellationToken)
+        public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateCandidateDto dto, CancellationToken cancellationToken)
         {
             // Admins can update any candidate. Candidates can update only their own profile.
             if (!User.IsInRole(Roles.Admin))
