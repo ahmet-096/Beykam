@@ -3,6 +3,7 @@ using System;
 using Beykam.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Beykam.Persistence.Migrations
 {
     [DbContext(typeof(BeykamDbContext))]
-    partial class BeykamDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250819120919_AdminRoleAdded")]
+    partial class AdminRoleAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -98,9 +101,9 @@ namespace Beykam.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("460aa30c-41d3-45ff-b876-2ea8c223de4b"),
+                            Id = new Guid("cd8f3605-840c-44dc-84a8-05f72f30b027"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3edb4da9-34d2-4a51-8918-23cdd13b7484",
+                            ConcurrencyStamp = "e9cc0e03-9f74-46a4-9b18-b98a71c02949",
                             Email = "admin@beykam.com",
                             EmailConfirmed = true,
                             FullName = "System Administrator",
@@ -108,9 +111,9 @@ namespace Beykam.Persistence.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@BEYKAM.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEKhY4MUurUZ2tS+YJunX+RxeuOVGastD4u6PgU+fXqrCGeAC6UCBGoYTO4UCipjsJg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAELlXlSxCYBsdGul9L4mRfyH+VFspVm/YwFo0BiNrd6jiDbMU3eS+pdlqK2GQc/AyXg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2bd671e2-49da-4f69-848e-5409ddfae575",
+                            SecurityStamp = "32d678c3-b1a2-48b6-b5cc-d007ee0f919c",
                             TwoFactorEnabled = false,
                             UserName = "admin",
                             UserType = 2
@@ -408,7 +411,7 @@ namespace Beykam.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("d9dc372e-2c88-494a-a066-cc9d6f98f0ae"),
+                            Id = new Guid("4832e535-4b77-419f-8701-c6a300896b91"),
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -500,8 +503,8 @@ namespace Beykam.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = new Guid("460aa30c-41d3-45ff-b876-2ea8c223de4b"),
-                            RoleId = new Guid("d9dc372e-2c88-494a-a066-cc9d6f98f0ae")
+                            UserId = new Guid("cd8f3605-840c-44dc-84a8-05f72f30b027"),
+                            RoleId = new Guid("4832e535-4b77-419f-8701-c6a300896b91")
                         });
                 });
 

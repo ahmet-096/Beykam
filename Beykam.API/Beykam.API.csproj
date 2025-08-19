@@ -25,6 +25,7 @@
     <ProjectReference Include="..\Beykam.Persistence\Beykam.Persistence.csproj" />
     <ProjectReference Include="..\Beykam.Domain\Beykam.Domain.csproj" />
     <ProjectReference Include="..\Beykam.Application\Beykam.Application.csproj" />
+    <ProjectReference Include="..\Beykam.Infrastructure\Beykam.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

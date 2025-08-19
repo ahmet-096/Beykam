@@ -27,7 +27,7 @@ namespace Beykam.Application.Candidates.Commands
 
             if (candidate is null)
             {
-                return Unit.Value; // Or throw NotFoundException
+                return Unit.Value;
             }
 
             _mapper.Map(request.Candidate, candidate);

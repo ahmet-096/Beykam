@@ -1,7 +1,11 @@
 using MediatR;
 
-namespace Beykam.Application.Employers.Commands;
-
-public record DeleteEmployerCommand(Guid Id) : IRequest<Unit>;
+namespace Beykam.Application.Employers.Commands
+{
+    public class DeleteEmployerCommand : IRequest<Unit>
+    {
+        public Guid Id { get; set; }
+    }
+}
 
 

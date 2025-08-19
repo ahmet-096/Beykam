@@ -1,17 +1,14 @@
 using Beykam.Domain.Enums;
+using Microsoft.AspNetCore.Identity;
 
-namespace Beykam.Domain.Entities;
-
-public class User
+namespace Beykam.Domain.Entities
 {
-    public Guid Id { get; set; }
-    public string FullName { get; set; } = null!;
-    public string Email { get; set; } = null!;
-    public string PasswordHash { get; set; } = null!;
-    public UserType UserType { get; set; }
-    public bool IsActive { get; set; } = true;
-    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-
-    public Employer? Employer { get; set; }
-    public Candidate? Candidate { get; set; }
+    public class ApplicationUser : IdentityUser<Guid>
+    {
+        public string? FullName { get; set; }
+        public UserType? UserType { get; set; } 
+        public bool IsActive { get; set; } = true;
+        public Candidate? Candidate { get; set; }
+        public Employer? Employer { get; set; }
+    }
 }

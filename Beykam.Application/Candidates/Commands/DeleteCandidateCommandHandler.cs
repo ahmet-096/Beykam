@@ -18,7 +18,7 @@ namespace Beykam.Application.Candidates.Commands
             var candidate = await _dbContext.Candidates.FirstOrDefaultAsync(c => c.Id == request.Id, cancellationToken);
             if (candidate is null)
             {
-                return Unit.Value; // Or throw NotFoundException
+                return Unit.Value; 
             }
 
             _dbContext.Candidates.Remove(candidate);

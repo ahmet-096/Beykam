@@ -3,6 +3,6 @@ using MediatR;
 
 namespace Beykam.Application.Users.Queries;
 
-public record GetAllUsersQuery() : IRequest<IEnumerable<User>>;
+public record GetAllUsersQuery() : IRequest<IEnumerable<ApplicationUser>>;
 
 

@@ -1,31 +1,27 @@
 using Beykam.Domain.Entities;
+using Beykam.Domain.Enums;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Beykam.Persistence.Context
 {
-    public class BeykamDbContext : DbContext
+    public class BeykamDbContext : IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid>
     {
         public BeykamDbContext(DbContextOptions<BeykamDbContext> options) : base(options) { }
 
-        // Entities
-        public DbSet<User> Users { get; set; }
-        public DbSet<Candidate> Candidates { get; set; }
-        public DbSet<CandidateSkill> CandidateSkills { get; set; }
-        public DbSet<CandidateLanguage> CandidateLanguages { get; set; }
-        public DbSet<CandidateExperience> CandidateExperiences { get; set; }
-        public DbSet<CandidateEducation> CandidateEducations { get; set; }
-        public DbSet<Employer> Employers { get; set; }
-        public DbSet<JobPost> Jobs { get; set; }
-        public DbSet<JobApplication> JobApplications { get; set; }
+        public DbSet<Candidate> Candidates { get; set; } = default!;
+        public DbSet<CandidateSkill> CandidateSkills { get; set; } = default!;
+        public DbSet<CandidateLanguage> CandidateLanguages { get; set; } = default!;
+        public DbSet<CandidateExperience> CandidateExperiences { get; set; } = default!;
+        public DbSet<CandidateEducation> CandidateEducations { get; set; } = default!;
+        public DbSet<Employer> Employers { get; set; } = default!;
+        public DbSet<JobPost> Jobs { get; set; } = default!;
+        public DbSet<JobApplication> JobApplications { get; set; } = default!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            // UserType enum conversion
-            modelBuilder.Entity<User>()
-                .Property(u => u.UserType)
-                .HasConversion<string>();
 
             // Candidate ↔ Skills
             modelBuilder.Entity<CandidateSkill>()
@@ -67,6 +63,18 @@ namespace Beykam.Persistence.Context
                 .HasOne(ja => ja.Candidate)
                 .WithMany(c => c.Applications)
                 .HasForeignKey(ja => ja.CandidateId);
+
+            // Candidate ↔ ApplicationUser
+            modelBuilder.Entity<Candidate>()
+                .HasOne(c => c.User)
+                .WithOne(u => u.Candidate)
+                .HasForeignKey<Candidate>(c => c.UserId);
+
+            // Employer ↔ ApplicationUser
+            modelBuilder.Entity<Employer>()
+                .HasOne(e => e.User)
+                .WithOne(u => u.Employer)
+                .HasForeignKey<Employer>(e => e.UserId);
         }
     }
 }

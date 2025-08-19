@@ -3,6 +3,8 @@ namespace Beykam.Domain.Entities
     public class Candidate
     {
         public Guid Id { get; set; }
+        public Guid UserId { get; set; }
+        public ApplicationUser? User { get; set; } 
         public required string FirstName { get; set; }
         public required string LastName { get; set; }
         public required string Email { get; set; }
