@@ -1,0 +1,12 @@
+{
+  "explorer.excludeGitIgnore": true,
+  "files.exclude": {
+    "**/bin": true,
+    "**/obj": true
+  },
+  "search.exclude": {
+    "**/bin": true,
+    "**/obj": true
+  }
+}
+

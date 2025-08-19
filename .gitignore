@@ -1,0 +1,46 @@
+# Build outputs
+**/bin/
+**/obj/
+**/Debug/
+**/Release/
+**/x64/
+**/x86/
+
+# Visual Studio
+.vs/
+
+# Rider / IDE
+.idea/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.csproj.user
+
+# Logs
+*.log
+
+# Test results & coverage
+TestResults/
+coverage/
+
+# NuGet packages
+*.nupkg
+*.snupkg
+**/packages/*
+!**/packages/build/
+!**/packages/repositories.config
+
+# Caches
+*.cache
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Env files
+.env
+.env.*.local
+
