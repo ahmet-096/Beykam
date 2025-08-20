@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Beykam.Persistence.Migrations
 {
     [DbContext(typeof(BeykamDbContext))]
-    [Migration("20250819121112_AdminRoleRemoved")]
-    partial class AdminRoleRemoved
+    [Migration("20250820073545_PendingChanges")]
+    partial class PendingChanges
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -97,27 +97,6 @@ namespace Beykam.Persistence.Migrations
                         .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("460aa30c-41d3-45ff-b876-2ea8c223de4b"),
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "3edb4da9-34d2-4a51-8918-23cdd13b7484",
-                            Email = "admin@beykam.com",
-                            EmailConfirmed = true,
-                            FullName = "System Administrator",
-                            IsActive = true,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "ADMIN@BEYKAM.COM",
-                            NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEKhY4MUurUZ2tS+YJunX+RxeuOVGastD4u6PgU+fXqrCGeAC6UCBGoYTO4UCipjsJg==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "2bd671e2-49da-4f69-848e-5409ddfae575",
-                            TwoFactorEnabled = false,
-                            UserName = "admin",
-                            UserType = 2
-                        });
                 });
 
             modelBuilder.Entity("Beykam.Domain.Entities.Candidate", b =>
@@ -278,15 +257,15 @@ namespace Beykam.Persistence.Migrations
                     b.Property<DateTime?>("ApprovedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<Guid?>("ApprovedBy")
-                        .HasColumnType("uuid");
-
                     b.Property<string>("CompanyDescription")
                         .HasColumnType("text");
 
                     b.Property<string>("CompanyName")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<bool>("IsApproved")
+                        .HasColumnType("boolean");
 
                     b.Property<string>("LogoUrl")
                         .HasColumnType("text");
@@ -327,7 +306,6 @@ namespace Beykam.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<string>("CoverLetter")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<Guid>("JobPostId")
@@ -351,6 +329,9 @@ namespace Beykam.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<int>("ApplicationCount")
+                        .HasColumnType("integer");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
@@ -364,6 +345,9 @@ namespace Beykam.Persistence.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("boolean");
 
+                    b.Property<bool>("IsApproved")
+                        .HasColumnType("boolean");
+
                     b.Property<int>("JobType")
                         .HasColumnType("integer");
 
@@ -375,11 +359,14 @@ namespace Beykam.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int>("ViewCount")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
 
                     b.HasIndex("EmployerId");
 
-                    b.ToTable("Jobs");
+                    b.ToTable("JobPosts");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", b =>
@@ -407,14 +394,6 @@ namespace Beykam.Persistence.Migrations
                         .HasDatabaseName("RoleNameIndex");
 
                     b.ToTable("AspNetRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("d9dc372e-2c88-494a-a066-cc9d6f98f0ae"),
-                            Name = "Admin",
-                            NormalizedName = "ADMIN"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -499,13 +478,6 @@ namespace Beykam.Persistence.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = new Guid("460aa30c-41d3-45ff-b876-2ea8c223de4b"),
-                            RoleId = new Guid("d9dc372e-2c88-494a-a066-cc9d6f98f0ae")
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>

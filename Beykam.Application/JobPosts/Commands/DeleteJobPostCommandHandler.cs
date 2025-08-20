@@ -15,11 +15,11 @@ namespace Beykam.Application.JobPosts.Commands
 
         public async Task<Unit> Handle(DeleteJobPostCommand request, CancellationToken cancellationToken)
         {
-            var jobPost = await _dbContext.Jobs.FirstOrDefaultAsync(j => j.Id == request.Id, cancellationToken);
+            var jobPost = await _dbContext.JobPosts.FirstOrDefaultAsync(j => j.Id == request.Id, cancellationToken);
             if (jobPost == null)
                 throw new KeyNotFoundException("Job post not found.");
 
-            _dbContext.Jobs.Remove(jobPost);
+            _dbContext.JobPosts.Remove(jobPost);
             await _dbContext.SaveChangesAsync(cancellationToken);
 
             return Unit.Value;

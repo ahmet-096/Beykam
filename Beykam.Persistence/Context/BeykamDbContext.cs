@@ -16,7 +16,7 @@ namespace Beykam.Persistence.Context
         public DbSet<CandidateExperience> CandidateExperiences { get; set; } = default!;
         public DbSet<CandidateEducation> CandidateEducations { get; set; } = default!;
         public DbSet<Employer> Employers { get; set; } = default!;
-        public DbSet<JobPost> Jobs { get; set; } = default!;
+        public DbSet<JobPost> JobPosts { get; set; } = default!;
         public DbSet<JobApplication> JobApplications { get; set; } = default!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

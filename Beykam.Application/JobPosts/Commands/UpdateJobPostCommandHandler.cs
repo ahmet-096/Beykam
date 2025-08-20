@@ -18,7 +18,7 @@ namespace Beykam.Application.JobPosts.Commands
 
         public async Task<JobPostDTO> Handle(UpdateJobPostCommand request, CancellationToken cancellationToken)
         {
-            var jobPost = await _dbContext.Jobs.Include(j => j.Employer)
+            var jobPost = await _dbContext.JobPosts.Include(j => j.Employer)
                 .FirstOrDefaultAsync(j => j.Id == request.Id && j.IsActive, cancellationToken);
 
             if (jobPost == null)

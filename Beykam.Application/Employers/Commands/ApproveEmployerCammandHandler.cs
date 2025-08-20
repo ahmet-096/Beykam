@@ -22,7 +22,7 @@ namespace Beykam.Application.Employers.Commands
                 throw new KeyNotFoundException("Employer not found");
 
             employer.IsApproved = true;
-            employer.ApprovedAt = DateTime.Now;
+            employer.ApprovedAt = DateTime.UtcNow;
 
             await _dbContext.SaveChangesAsync(cancellationToken);
 

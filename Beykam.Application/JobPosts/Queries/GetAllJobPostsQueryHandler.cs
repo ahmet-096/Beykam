@@ -19,7 +19,7 @@ namespace Beykam.Application.JobPosts.Queries
 
         public async Task<List<JobPostDTO>> Handle(GetAllJobPostsQuery request, CancellationToken cancellationToken)
         {
-            var jobPosts = await _dbContext.Jobs
+            var jobPosts = await _dbContext.JobPosts
                 .Include(j => j.Employer)
                 .Where(j => j.IsActive && j.IsApproved)
                 .ToListAsync(cancellationToken);

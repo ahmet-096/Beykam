@@ -33,7 +33,7 @@ namespace Beykam.Application.JobPosts.Commands
                 IsActive = true
             };
 
-            _dbContext.Jobs.Add(jobPost);
+            _dbContext.JobPosts.Add(jobPost);
             await _dbContext.SaveChangesAsync(cancellationToken);
 
             return new JobPostDTO

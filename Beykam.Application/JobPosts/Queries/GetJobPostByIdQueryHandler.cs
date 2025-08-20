@@ -18,7 +18,7 @@ namespace Beykam.Application.JobPosts.Queries
         }
         public async Task<JobPostDTO?> Handle(GetJobPostByIdQuery request, CancellationToken cancellationToken)
         {
-            var jobPost = await _dbContext.Jobs
+            var jobPost = await _dbContext.JobPosts
                 .Include(j => j.Employer)
                 .FirstOrDefaultAsync(j => j.Id == request.Id, cancellationToken);
 

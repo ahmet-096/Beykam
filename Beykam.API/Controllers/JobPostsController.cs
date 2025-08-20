@@ -9,11 +9,11 @@ namespace Beykam.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class JobPostController : ControllerBase
+    public class JobPostsController : ControllerBase
     {
         private readonly IMediator _mediator;
 
-        public JobPostController(IMediator mediator)
+        public JobPostsController(IMediator mediator)
         {
             _mediator = mediator;
         }
@@ -37,7 +37,7 @@ namespace Beykam.API.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Employer")]
+        [Authorize(Roles = "Admin,Employer")]
         public async Task<IActionResult> Create([FromBody] CreateJobPostCommand command)
         {
             var result = await _mediator.Send(command);
@@ -45,7 +45,7 @@ namespace Beykam.API.Controllers
         }
 
         [HttpPut("{id}")]
-        [Authorize(Roles = "Employer")]
+        [Authorize(Roles = "Admin,Employer")]
         public async Task<IActionResult> Update(Guid id, [FromBody] UpdateJobPostCommand command)
         {
             if (id != command.Id)
@@ -56,7 +56,7 @@ namespace Beykam.API.Controllers
         }
 
         [HttpDelete("{id}")]
-        [Authorize(Roles = "Employer")]
+        [Authorize(Roles = "Admin,Employer")]
         public async Task<IActionResult> Delete(Guid id)
         {
             await _mediator.Send(new DeleteJobPostCommand { Id = id });

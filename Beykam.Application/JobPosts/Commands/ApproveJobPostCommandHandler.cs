@@ -15,7 +15,7 @@ namespace Beykam.Application.JobPosts.Commands
 
         public async Task<Unit> Handle(ApproveJobPostCommand request, CancellationToken cancellationToken)
         {
-            var jobPost = await _dbContext.Jobs
+            var jobPost = await _dbContext.JobPosts
                 .FirstOrDefaultAsync(j => j.Id == request.Id, cancellationToken);
 
             if (jobPost == null)
