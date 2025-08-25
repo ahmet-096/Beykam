@@ -6,6 +6,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Beykam.Persistence.Context;
+using System.Security.Claims;
+using Microsoft.EntityFrameworkCore;
+
+
 
 namespace Beykam.API.Controllers
 {
@@ -153,6 +157,37 @@ namespace Beykam.API.Controllers
 
             var token = await _jwtTokenService.CreateTokenAsync(user);
             return Ok(new { access_token = token });
+        }
+
+         [HttpGet("me")]
+        public async Task<IActionResult> GetCurrentUser(CancellationToken cancellationToken)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (userId == null)
+                return Unauthorized();
+
+            var user = await _dbContext.Users
+            .Include(u => u.Employer)
+            .Include(u => u.Candidate)
+            .FirstOrDefaultAsync(u => u.Id == Guid.Parse(userId), cancellationToken);
+
+
+            if (user == null)
+                return NotFound();
+
+            var role = User.FindFirstValue(ClaimTypes.Role);
+
+            return Ok(new
+            {
+                userId = user.Id,
+                email = user.Email,
+                fullName = user.FullName,
+                role = role,
+                employerId = user.Employer?.Id,
+                candidateId = user.Candidate?.Id,
+    
+            });
         }
     }
 }

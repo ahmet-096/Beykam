@@ -101,7 +101,7 @@ namespace Beykam.API.Controllers
             return NoContent();
         }
         
-        [HttpPost("{id}/approve")]
+        [HttpPost("approve/{id}")]
         public async Task<IActionResult> Approve(Guid id)
         {
             var command = new ApproveEmployerCommand { Id = id };
