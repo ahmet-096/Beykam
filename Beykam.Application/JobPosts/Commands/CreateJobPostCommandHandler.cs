@@ -45,7 +45,8 @@ namespace Beykam.Application.JobPosts.Commands
                 EmployerName = employer.CompanyName,
                 CreatedAt = jobPost.CreatedAt,
                 ViewCount = jobPost.ViewCount,
-                ApplicationCount = jobPost.ApplicationCount
+                ApplicationCount = jobPost.ApplicationCount,
+                Description = jobPost.Description
             };
         }
     }

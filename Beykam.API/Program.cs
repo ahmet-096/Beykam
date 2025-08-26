@@ -77,8 +77,19 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-var app = builder.Build();
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.WithOrigins("http://localhost:3000", "http://localhost:3001")
+              .AllowAnyMethod()
+              .AllowAnyHeader()
+              .AllowCredentials();
+    });
+});
 
+var app = builder.Build();
+app.UseCors();
 
 if (app.Environment.IsDevelopment())
 {
