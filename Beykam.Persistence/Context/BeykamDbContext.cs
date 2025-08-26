@@ -9,7 +9,6 @@ namespace Beykam.Persistence.Context
     public class BeykamDbContext : IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid>
     {
         public BeykamDbContext(DbContextOptions<BeykamDbContext> options) : base(options) { }
-
         public DbSet<Candidate> Candidates { get; set; } = default!;
         public DbSet<CandidateSkill> CandidateSkills { get; set; } = default!;
         public DbSet<CandidateLanguage> CandidateLanguages { get; set; } = default!;

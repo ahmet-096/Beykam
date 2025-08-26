@@ -8,6 +8,11 @@ using Microsoft.AspNetCore.Mvc;
 using Beykam.Persistence.Context;
 using System.Security.Claims;
 using Microsoft.EntityFrameworkCore;
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 22642daa9516f46262a806c6e093348dc58cc263
 
 namespace Beykam.API.Controllers
 {
@@ -164,7 +169,12 @@ namespace Beykam.API.Controllers
 
             return Ok(new { access_token = token, role });
         }
+<<<<<<< HEAD
         [HttpGet("me")]
+=======
+
+         [HttpGet("me")]
+>>>>>>> 22642daa9516f46262a806c6e093348dc58cc263
         public async Task<IActionResult> GetCurrentUser(CancellationToken cancellationToken)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -191,10 +201,16 @@ namespace Beykam.API.Controllers
                 role = role,
                 employerId = user.Employer?.Id,
                 candidateId = user.Candidate?.Id,
+<<<<<<< HEAD
 
             });
         }
 
+=======
+    
+            });
+        }
+>>>>>>> 22642daa9516f46262a806c6e093348dc58cc263
     }
 }
 
