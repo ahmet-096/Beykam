@@ -11,7 +11,8 @@ namespace Beykam.Application.JobPosts.DTOs
         public string EmployerName { get; set; } = default!;
         public DateTime CreatedAt { get; set; }
         public int ViewCount { get; set; }
-        public int  ApplicationCount { get; set; }
+        public int ApplicationCount { get; set; }
         public string Description { get; set; } = default!;
+        public bool IsApproved { get; set; }
     }
 }

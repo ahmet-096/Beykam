@@ -165,6 +165,7 @@ namespace Beykam.API.Controllers
             return Ok(new { access_token = token, role });
         }
         [HttpGet("me")]
+        [Authorize]
         public async Task<IActionResult> GetCurrentUser(CancellationToken cancellationToken)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);

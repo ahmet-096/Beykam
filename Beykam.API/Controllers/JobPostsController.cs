@@ -30,7 +30,7 @@ namespace Beykam.API.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> GetById(Guid id)
         {
-            var jobPost = await _mediator.Send(new GetJobPostByIdQuery{ Id = id });
+            var jobPost = await _mediator.Send(new GetJobPostByIdQuery { Id = id });
             if (jobPost == null)
                 return NotFound();
             return Ok(jobPost);
@@ -67,8 +67,9 @@ namespace Beykam.API.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Approve(Guid id)
         {
-            await _mediator.Send(new ApproveJobPostCommand{ Id = id });
+            await _mediator.Send(new ApproveJobPostCommand { Id = id });
             return NoContent();
         }
     }
+    
 }

@@ -41,7 +41,8 @@ namespace Beykam.Application.JobPosts.Commands
                 CreatedAt = jobPost.CreatedAt,
                 ViewCount = jobPost.ViewCount,
                 ApplicationCount = jobPost.ApplicationCount,
-                Description = jobPost.Description
+                Description = jobPost.Description,
+                IsApproved = jobPost.IsApproved
             };
         }
     }
