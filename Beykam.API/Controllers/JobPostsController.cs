@@ -70,6 +70,13 @@ namespace Beykam.API.Controllers
             await _mediator.Send(new ApproveJobPostCommand { Id = id });
             return NoContent();
         }
+
+        [HttpGet("employer/{employerId}")]
+        [Authorize(Roles = "Employer,Admin")]
+        public async Task<IActionResult> GetByEmployer(Guid employerId)
+        {
+            var jobPosts = await _mediator.Send(new GetAllJobPostQueryByEmployer(employerId));
+            return Ok(jobPosts);
+        }
     }
-    
 }

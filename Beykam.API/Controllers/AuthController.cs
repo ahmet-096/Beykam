@@ -131,7 +131,6 @@ namespace Beykam.API.Controllers
             var token = await _jwtTokenService.CreateTokenAsync(user);
             return Ok(new { access_token = token });
         }
-
         [HttpPost("login")]
         [AllowAnonymous]
         public async Task<IActionResult> Login([FromBody] LoginRequest request)
@@ -139,31 +138,47 @@ namespace Beykam.API.Controllers
             var user = await _userManager.FindByEmailAsync(request.Email);
             if (user is null)
             {
+                Console.WriteLine($"Kullanıcı bulunamadı: {request.Email}");
                 return Unauthorized();
             }
 
             if (!user.IsActive)
             {
+                Console.WriteLine($"Kullanıcı aktif değil: {request.Email}");
                 return Forbid();
             }
 
             var result = await _signInManager.CheckPasswordSignInAsync(user, request.Password, false);
             if (!result.Succeeded)
             {
+                Console.WriteLine($"Şifre yanlış: {request.Email}");
                 return Unauthorized();
             }
 
+            Console.WriteLine($"Giriş başarılı: {request.Email}");
+
             var token = await _jwtTokenService.CreateTokenAsync(user);
 
-
-
-
-            // Kullanıcının rolünü al
             var roles = await _userManager.GetRolesAsync(user);
             var role = roles.FirstOrDefault();
 
-            return Ok(new { access_token = token, role });
+            var employer = await _dbContext.Employers.FirstOrDefaultAsync(e => e.UserId == user.Id);
+            var candidate = await _dbContext.Candidates.FirstOrDefaultAsync(c => c.UserId == user.Id);
+
+            return Ok(new
+            {
+                access_token = token,
+                role,
+                employerId = employer?.Id,
+                candidateId = candidate?.Id
+            });
         }
+
+
+
+
+        // Kullanıcının rolünü al
+
         [HttpGet("me")]
         [Authorize]
         public async Task<IActionResult> GetCurrentUser(CancellationToken cancellationToken)

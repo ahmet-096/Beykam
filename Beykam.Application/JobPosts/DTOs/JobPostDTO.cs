@@ -4,6 +4,8 @@ namespace Beykam.Application.JobPosts.DTOs
 {
     public class JobPostDTO
     {
+        public Guid EmployerId { get; set; }
+
         public Guid Id { get; set; }
         public string Title { get; set; } = default!;
         public string Location { get; set; } = default!;

@@ -29,9 +29,9 @@ namespace Beykam.Application.JobPosts.Commands
                 Description = request.Description,
                 JobType = request.JobType,
                 Location = request.Location,
-                IsApproved = false, // önce admin onayına düşecek
+                IsApproved = false,
                 IsActive = true,
-                
+                CreatedAt = DateTime.UtcNow
             };
 
             _dbContext.JobPosts.Add(jobPost);
